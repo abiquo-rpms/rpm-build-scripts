@@ -1,0 +1,70 @@
+require 'term/ansicolor'
+require 'rake/rpm-utils'
+require 'tmpdir'
+
+class String
+  include Term::ANSIColor
+end
+
+if not File.exist?('/usr/bin/rpmdev-setuptree')
+  $stderr.puts "rpmdev-setuptree script not found."
+  $stderr.puts "yum install rpmdevtools"
+  exit 1
+end
+
+if RUBY_VERSION !~ /(1\.8\.7)|(1\.9)/
+  $stderr.puts "Ruby version #{RUBY_VERSION} unsupported." 
+  exit 1
+end
+
+RELEASE = "1.7"
+HUDSON_PATH = "1.7.0-SNAPSHOT"
+WAR_PKGS = [
+  { :name => 'abiquo-am', :war => 'am' },
+  { :name => 'abiquo-api', :war => 'api' },
+  { :name => 'abiquo-client-premium', :war => 'client-premium' },
+  { :name => 'abiquo-nodecollector', :war => 'nodecollector' },
+  { :name => 'abiquo-server', :war => 'server' },
+  { :name => 'abiquo-ssm', :war => 'ssm' },
+  { :name => 'abiquo-v2v', :war => 'bpm-async' },
+  { :name => 'abiquo-vsm', :war => 'vsm' },
+  { :name => 'abiquo-virtualfactory', :war => 'virtualfactory' }
+] 
+
+task :update_wars do
+  cwd = Dir.pwd
+  
+  WAR_PKGS.each do |d|
+    Dir.chdir d[:name]
+    print "Updating WAR for #{d[:name]}... "
+    `rake update_war[#{d[:war]},#{RELEASE},#{HUDSON_PATH}] > update_wars.log 2>&1`
+    if $? != 0
+      puts "Failed".bold.red
+    else
+      puts "Done".bold.green
+    end
+    Dir.chdir cwd
+  end
+
+end
+
+task :build_srpms,:tmpdir do |t, args|
+  destdir = args[:tmpdir] || Dir.mktmpdir
+  Dir.mkdir destdir if not File.exist?(destdir)
+  Dir.mkdir "srpms" if not File.exist?("srpms")
+  cwd = Dir.pwd
+  Dir['*'].each do |d|
+    if File.exist?(File.join(d,'Rakefile'))
+      Dir.chdir d
+      print "Building SRPM #{d}... "
+      `rake rpm_utils:build_srpm[#{destdir}] > rake.log 2>&1`
+      `cp #{destdir}/SRPMS/*.rpm #{cwd}/srpms/ > /dev/null 2>&1`
+      if $? != 0
+        puts "Failed".bold.red
+      else
+        puts "Done".bold.green
+      end
+    end
+    Dir.chdir cwd
+  end
+end
