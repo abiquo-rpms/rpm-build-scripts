@@ -1,0 +1,24 @@
+---
+:common_repo:     'abiquo-rpms'
+:abiquo_version:  '1.7'
+:mock_profile:    'centos-5.5-x86_64'
+:rhel5_compat:    true
+:rpmbuild_macros: '--define "dist el5" --define "buildstamp ".%(date +%Y%m%d_%H%M)"'
+:mock_macros:     ''
+:abiquo_ee_repos:
+  - abiquo-am
+  - abiquo-api
+  - abiquo-client-premium
+  - abiquo-core
+  - abiquo-lvmiscsi
+  - abiquo-nodecollector
+  - abiquo-node-tools
+  - abiquo-ontap
+  - abiquo-pocsetup
+  - abiquo-remote-services
+  - abiquo-server
+  - abiquo-server-tools
+  - abiquo-ssm
+  - abiquo-v2v
+  - abiquo-virtualfactory
+  - abiquo-vsm
