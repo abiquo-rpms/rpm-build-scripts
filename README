@@ -12,4 +12,15 @@ BUILDING Abiquo EE RPMS
 The resulting SRPMS and RPMS will be in build/srpms and build/rpms
 
 
+CONFIGURE SSH TO USE KEYS FOR THE RPM GIT REPOS
+-----------------------------------------------
+Add this to your  ~/.ssh/config file:
+
+Host rpm-git.abiquo.com
+        hostname git-host-here
+        user root
+        IdentityFile ~/.ssh/privkey-here
+
+
+
 
