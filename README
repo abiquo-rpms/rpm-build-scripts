@@ -1,1 +1,15 @@
+PREREQUISITES
+-------------
 Install rpm-utils and rpm-robot gems
+
+BUILDING Abiquo EE RPMS
+-----------------------
+1. clean build dir if exists
+2. run:
+   
+   ruby run.rb
+
+The resulting SRPMS and RPMS will be in build/srpms and build/rpms
+
+
+
