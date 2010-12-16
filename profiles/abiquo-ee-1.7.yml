@@ -7,11 +7,11 @@
 :rpmbuild_macros: '--define "dist el5" --define "buildstamp ".%(date +%Y%m%d_%H%M)"'
 :mock_macros: 
 :run_steps:
-        :clone_common_repos: true
-        :clone_private_repos: true
+        :clone_common_repos:      true
+        :clone_private_repos:     true
         :update_platform_sources: true
-        :create_srpms: true
-        :build_rpms: true
+        :create_srpms:            true
+        :build_rpms:              true
 
 :platform_packages:
   - 'abiquo-am'
