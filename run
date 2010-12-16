@@ -19,33 +19,33 @@ if config[:run_steps][:clone_common_repos]
   puts
   puts "Clone/Update common repos".bold
   puts
-  require 'clone-common-repos'
+  require 'lib/clone-common-repos'
 end
 
 if config[:run_steps][:clone_private_repos]
   puts
   puts "Clone/Update private repos".bold
   puts
-  require 'clone-private-repos'
+  require 'lib/clone-private-repos'
 end
 
 if config[:run_steps][:update_platform_sources]
   puts
   puts "Updating platform sources".bold
   puts
-  require 'update-platform-sources'
+  require 'lib/update-platform-sources'
 end
 
 if config[:run_steps][:create_srpms]
   puts
   puts "Create SRPMS".bold
   puts
-  require 'create-srpms'
+  require 'lib/create-srpms'
 end
 
 if config[:run_steps][:build_rpms]
   puts
   puts "Build RPMS".bold
   puts
-  require 'build-rpms'
+  require 'lib/build-rpms'
 end
