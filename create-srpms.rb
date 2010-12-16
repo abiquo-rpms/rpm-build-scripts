@@ -12,7 +12,7 @@ repos.each do |r|
   res = false
   RPMRobot::Log.msg "Building SRPM #{Dir.pwd.split('/').last} ".ljust(60), false
   begin
-    res = RPMRobot::RPMBuild.build_srpm :copy_to => "#{cwd}/build/srpms/", :rhel5_compat=> config[:rhel5_compat]
+    res = RPMRobot::RPMBuild.create_srpm :copy_to => "#{cwd}/build/srpms/", :rhel5_compat=> config[:rhel5_compat]
   rescue RPMRobot::RPMBuild::NoSpecFound
     res = false
   end

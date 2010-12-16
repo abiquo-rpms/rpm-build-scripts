@@ -48,7 +48,7 @@ task :update_wars do
 
 end
 
-task :build_srpms,:tmpdir do |t, args|
+task :create_srpms,:tmpdir do |t, args|
   destdir = args[:tmpdir] || Dir.mktmpdir
   Dir.mkdir destdir if not File.exist?(destdir)
   Dir.mkdir "srpms" if not File.exist?("srpms")

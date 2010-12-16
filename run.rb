@@ -9,5 +9,5 @@ FileUtils.mkdir_p 'build/repos-ee'
 
 require 'clone-common-repos'
 require 'clone-private-repos'
-require 'build-srpms'
+require 'create-srpms'
 require 'build-rpms'
