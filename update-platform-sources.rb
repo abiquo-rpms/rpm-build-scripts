@@ -11,7 +11,7 @@ config[:platform_packages].each do |pkg|
   pkg_dir = File.join('build/repos-ee', pkg)
   if File.directory?(pkg_dir)
     Dir.chdir pkg_dir 
-    `rake update_war[#{source_name},#{config[:abiquo_version]}, #{config[:hudson_dir]}]`
+    `rake update_war[#{source_name},#{config[:abiquo_version]},#{config[:hudson_dir]}]`
     Dir.chdir cwd
     if $? == 0
       RPMRobot::Log.done
