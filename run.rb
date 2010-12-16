@@ -29,7 +29,7 @@ if config[:run_steps][:clone_private_repos]
   require 'clone-private-repos'
 end
 
-if config[:run_steps][:update_plaform_sources]
+if config[:run_steps][:update_platform_sources]
   puts
   puts "Updating platform sources".bold
   puts
