@@ -5,8 +5,7 @@ config = YAML.load_file 'profiles/default.yml'
 
 config[:platform_packages].each do |pkg|
   source_name = pkg.gsub('abiquo-','')
-  RPMRobot::Log.msg "Updating #{source_name} platform sources... ".ljust(60), 
-                    false 
+  RPMRobot::Log.msg "Updating #{source_name} platform sources... ".ljust(60), false 
   cwd = Dir.pwd
   pkg_dir = File.join('build/repos-ee', pkg)
   if File.directory?(pkg_dir)
