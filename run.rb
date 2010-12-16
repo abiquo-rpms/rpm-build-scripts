@@ -8,27 +8,44 @@ class String
   include Term::ANSIColor
 end
 
+config = YAML.load_file 'profiles/default.yml'
+
 FileUtils.mkdir_p 'build/srpms'
 FileUtils.mkdir_p 'build/rpms'
 FileUtils.mkdir_p 'build/repos'
 FileUtils.mkdir_p 'build/repos-ee'
 
-puts
-puts "Clone/Update common repos".bold
-puts
-require 'clone-common-repos'
+if config[:run_steps][:clone_common_repos]
+  puts
+  puts "Clone/Update common repos".bold
+  puts
+  require 'clone-common-repos'
+end
 
-puts
-puts "Clone/Update private repos".bold
-puts
-require 'clone-private-repos'
+if config[:run_steps][:clone_private_repos]
+  puts
+  puts "Clone/Update private repos".bold
+  puts
+  require 'clone-private-repos'
+end
 
-puts
-puts "Create SRPMS".bold
-puts
-require 'create-srpms'
+if config[:run_steps][:update_plaform_sources]
+  puts
+  puts "Updating platform sources".bold
+  puts
+  require 'update-platform-sources'
+end
 
-puts
-puts "Build SRPMS".bold
-puts
-require 'build-rpms'
+if config[:run_steps][:create_srpms]
+  puts
+  puts "Create SRPMS".bold
+  puts
+  require 'create-srpms'
+end
+
+if config[:run_steps][:build_rpms]
+  puts
+  puts "Build RPMS".bold
+  puts
+  require 'build-rpms'
+end
