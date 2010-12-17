@@ -1,6 +1,6 @@
 PREREQUISITES
 -------------
-Install rpm-utils and rpm-robot gems
+Install orpium gem
 
 BUILDING Abiquo EE RPMS
 -----------------------

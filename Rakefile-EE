@@ -1,5 +1,5 @@
 require 'term/ansicolor'
-require 'rake/rpm-utils'
+require 'orpium'
 require 'tmpdir'
 
 class String

@@ -1,17 +1,17 @@
 require 'rubygems'
 require 'fileutils'
-require 'rpm-robot'
+require 'orpium'
 
-repos = RPMRobot::Github.list_repos('abiquo-rpms')
+repos = Orpium::Github.list_repos('abiquo-rpms')
 repos.delete 'rpm-build-scripts'
 
 repos.each do |repo|
-  RPMRobot::Log.msg "Fetching repo #{repo}... ".ljust(60), false
-  res = RPMRobot::Github.pull_repo('abiquo-rpms', repo, :dest_dir => 'build/repos')
+  Orpium::Log.msg "Fetching repo #{repo}... ".ljust(60), false
+  res = Orpium::Github.pull_repo('abiquo-rpms', repo, :dest_dir => 'build/repos')
   if res
-    RPMRobot::Log.done
+    Orpium::Log.done
   else
-    RPMRobot::Log.failed
+    Orpium::Log.failed
   end
 end
 
