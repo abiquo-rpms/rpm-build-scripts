@@ -7,6 +7,10 @@ cwd = Dir.pwd
 
 config[:platform_packages].each do |pkg|
   source_name = pkg.gsub('abiquo-','')
+  # HACK
+  if source_name == 'v2v'
+    source_name = 'bpm-async'
+  end
   Orpium::Log.msg "Updating #{source_name} platform sources... ".ljust(60), false 
   begin
     pkg_dir = File.join('build/repos-ee', pkg)
