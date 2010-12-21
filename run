@@ -16,6 +16,24 @@ FileUtils.mkdir_p 'build/rpms'
 FileUtils.mkdir_p 'build/repos'
 FileUtils.mkdir_p 'build/repos-ee'
 
+# Clean ~/rpmbuild
+rpmbuild_dir = "#{ENV['HOME']}/rpmbuild"
+%w(SRPMS SPECS SOURCES BUILD BUILDROOT RPMS).each do |d|
+  dir = File.join(topdir, d)
+  FileUtils.rm_rf dir
+  Dir.mkdir dir
+end
+
+# Clean old SRPMS
+Dir["build/srpms/*.rpm"].each do |f|
+  FileUtils.rm_f f
+end
+
+# Clean old RPMS
+Dir["build/rpms/*.rpm"].each do |f|
+  FileUtils.rm_f f
+end
+
 if config[:run_steps][:clone_common_repos]
   puts
   puts "Clone/Update common repos".bold
