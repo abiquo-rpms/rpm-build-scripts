@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'orpium'
+require 'fileutils'
 
 config = YAML.load_file 'profiles/default.yml'
 
@@ -13,3 +14,5 @@ Dir['build/srpms/*.src.rpm'].each do |srpm|
     Orpium::Log.failed
   end
 end
+  
+Dir['build/rpms/*.src.rpm'].each { |f| File.rm_f f }
