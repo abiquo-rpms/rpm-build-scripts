@@ -22,6 +22,7 @@
   - 'abiquo-ssm'
   - 'abiquo-v2v'
   - 'abiquo-client-premium'
+  - 'abiquo-nodecollector'
 
 :abiquo_ee_repos:
   - 'abiquo-am'
