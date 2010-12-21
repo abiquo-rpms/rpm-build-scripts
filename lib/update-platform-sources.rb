@@ -19,7 +19,7 @@ config[:platform_packages].each do |pkg|
     end
   rescue Exception => e
     Orpium::Log.failed
-    $stderr.puts e.msg
+    $stderr.puts e.message
   ensure
     Dir.chdir cwd
   end
