@@ -18,7 +18,8 @@ config[:platform_packages].each do |pkg|
     else
       Orpium::Log.failed
     end
-  rescue
+  rescue Exception => e
     Orpium::Log.failed
+    $stderr.puts e.msg
   end
 end
