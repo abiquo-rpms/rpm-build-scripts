@@ -15,4 +15,4 @@ Dir['build/srpms/*.src.rpm'].each do |srpm|
   end
 end
   
-Dir['build/rpms/*.src.rpm'].each { |f| File.rm_f f }
+Dir['build/rpms/*.src.rpm'].each { |f| FileUtils.rm_f f }
