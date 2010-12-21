@@ -68,3 +68,6 @@ if config[:run_steps][:build_rpms]
   puts
   require 'lib/build-rpms'
 end
+
+Dir.chdir 'build/rpms'
+`createrepo --update -d . `
