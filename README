@@ -1,6 +1,6 @@
 PREREQUISITES
 -------------
-Install orpium gem
+Install orpium, archive-tar-minitar, archive-zip, streamly
 
 BUILDING Abiquo EE RPMS
 -----------------------
