@@ -19,7 +19,7 @@ FileUtils.mkdir_p 'build/repos-ee'
 # Clean ~/rpmbuild
 rpmbuild_dir = "#{ENV['HOME']}/rpmbuild"
 %w(SRPMS SPECS SOURCES BUILD BUILDROOT RPMS).each do |d|
-  dir = File.join(topdir, d)
+  dir = File.join(rpmbuild_dir, d)
   FileUtils.rm_rf dir
   Dir.mkdir dir
 end
