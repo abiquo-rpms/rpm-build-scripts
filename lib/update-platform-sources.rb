@@ -10,7 +10,7 @@ config[:platform_packages].each do |pkg|
   pkg_dir = File.join('build/repos-ee', pkg)
   if File.directory?(pkg_dir)
     Dir.chdir pkg_dir 
-    `rake update_war[#{source_name},#{config[:abiquo_version]},#{config[:hudson_dir]}]`
+    repackage_war "http://hudson/#{config[:hudson_dir]}/premium/#{source_name}.war", config[:abiquo_version]
     Dir.chdir cwd
     if $? == 0
       Orpium::Log.done
