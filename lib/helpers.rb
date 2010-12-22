@@ -19,7 +19,7 @@ def repackage_war(war_url, version, dest_dir = nil)
     dest_dir = Dir.pwd
   end
   war_file = File.join(dest_dir, File.basename(fpath))
-  source_dir_name = File.basename(fpath, '.war') + "-#{version}"
+  source_dir_name = "abiquo-" + File.basename(fpath, '.war') + "-#{version}"
   tgz_name = "#{source_dir_name}.tar.gz"
   source_dir = File.join(dest_dir, source_dir_name)
 
