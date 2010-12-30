@@ -9,7 +9,7 @@
 :run_steps:
         :clone_common_repos:      true
         :clone_private_repos:     true
-        :update_platform_sources: true
+        :update_platform_sources: false
         :create_srpms:            true
         :build_rpms:              true
 
