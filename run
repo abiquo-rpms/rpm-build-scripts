@@ -15,6 +15,12 @@ FileUtils.mkdir_p 'build/srpms'
 FileUtils.mkdir_p 'build/rpms'
 FileUtils.mkdir_p 'build/repos'
 FileUtils.mkdir_p 'build/repos-ee'
+FileUtils.mkdir_p 'build/archive/RPMS'
+FileUtils.mkdir_p 'build/archive/SRPMS'
+
+# Archive old builds
+FileUtils.mv 'build/rpms/*.rpm', 'build/archive/RPMS'
+FileUtils.mv 'build/srpms/*.rpm', 'build/archive/SRPMS'
 
 # Clean ~/rpmbuild
 puts
