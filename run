@@ -17,6 +17,9 @@ FileUtils.mkdir_p 'build/repos'
 FileUtils.mkdir_p 'build/repos-ee'
 
 # Clean ~/rpmbuild
+puts
+puts "Cleaning rpmbuild tree..."
+puts
 rpmbuild_dir = "#{ENV['HOME']}/rpmbuild"
 %w(SRPMS SPECS SOURCES BUILD BUILDROOT RPMS).each do |d|
   dir = File.join(rpmbuild_dir, d)
