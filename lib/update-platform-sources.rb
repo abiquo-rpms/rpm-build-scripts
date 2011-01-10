@@ -1,7 +1,9 @@
 require 'rubygems'
 require 'orpium'
 require 'lib/helpers'
+require 'streamly'
 
+PLATFORM_WARS_URL = 'http://hudson/1.7.0-SNAPSHOT/premium/'
 config = YAML.load_file 'profiles/default.yml'
 cwd = Dir.pwd
 
@@ -16,7 +18,11 @@ config[:platform_packages].each do |pkg|
     pkg_dir = File.join('build/repos-ee', pkg)
     if File.directory?(pkg_dir)
       Dir.chdir pkg_dir 
-      repackage_war "http://hudson/#{config[:hudson_dir]}/premium/#{source_name}.war", config[:abiquo_version]
+      File.open(source_name + '.war', 'w') do |f|
+        Streamly.get "#{PLATFORM_WARS_URL}/#{source_name}.war" do |chunk|
+          f.write chunk
+        end
+      end
       Orpium::Log.done
     else
       Orpium::Log.failed
