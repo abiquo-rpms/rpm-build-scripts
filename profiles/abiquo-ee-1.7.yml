@@ -1,4 +1,5 @@
 ---
+:clean_previous_build: false
 :common_repo:     'abiquo-rpms'
 :abiquo_version:  '1.7'
 :hudson_dir:      '1.7.0-SNAPSHOT'

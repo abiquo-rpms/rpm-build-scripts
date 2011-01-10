@@ -24,14 +24,19 @@ rpmbuild_dir = "#{ENV['HOME']}/rpmbuild"
   Dir.mkdir dir
 end
 
-# Clean old SRPMS
-Dir["build/srpms/*.rpm"].each do |f|
-  FileUtils.rm_f f
-end
+if config[:clean_previous_build]
+  puts
+  puts "Cleaning previous build..."
+  puts
+  # Clean old SRPMS
+  Dir["build/srpms/*.rpm"].each do |f|
+    FileUtils.rm_f f
+  end
 
-# Clean old RPMS
-Dir["build/rpms/*.rpm"].each do |f|
-  FileUtils.rm_f f
+  # Clean old RPMS
+  Dir["build/rpms/*.rpm"].each do |f|
+    FileUtils.rm_f f
+  end
 end
 
 if config[:run_steps][:clone_common_repos]
