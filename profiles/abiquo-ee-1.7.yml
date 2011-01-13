@@ -3,7 +3,7 @@
 :common_repo:     'abiquo-rpms'
 :abiquo_version:  '1.7'
 :hudson_dir:      '1.7.0-SNAPSHOT'
-:mock_profile:    'centos-5.5-x86_64'
+:mock_profile:    'abiquo-1.7'
 :rhel5_compat:    false
 :rpmbuild_macros: '--define "dist el5" --define "buildstamp ".%(date +%Y%m%d_%H%M)"'
 :mock_macros: 
