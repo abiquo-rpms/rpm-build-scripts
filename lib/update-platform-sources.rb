@@ -18,6 +18,10 @@ config[:platform_packages].each do |pkg|
     pkg_dir = File.join('build/repos-ee', pkg)
     if File.directory?(pkg_dir)
       Dir.chdir pkg_dir 
+
+      # this will raise an exception if we can't access the resource
+      RestClient.get "#{PLATFORM_WARS_URL}/#{source_name}.war"
+
       File.open(source_name + '.war', 'w') do |f|
         Streamly.get "#{PLATFORM_WARS_URL}/#{source_name}.war" do |chunk|
           f.write chunk
